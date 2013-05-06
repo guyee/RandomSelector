@@ -1,0 +1,73 @@
+doctype
+html lang="en"
+  head
+    title
+      | Pydo's random number test
+    link href="http://netdna.bootstrapcdn.com/bootswatch/2.3.1/superhero/bootstrap.min.css" rel="stylesheet" type="text/css"
+    script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js" type="text/javascript"
+    script src="http://code.jquery.com/jquery-1.9.1.min.js"
+    javascript:
+      thing = function (description) {
+        this.desc = description;
+        this.children = [];
+        var _this = this;
+        this.generate = function (new_desc) {
+          var new_thing = new thing(new_desc)
+          _this.children.push(new_thing);
+          return new_thing;
+        }
+        this.get_random = function () {
+          var die1 = Math.floor((Math.random()*_this.children.length));
+          return _this.children[die1];
+        }
+      }
+
+      container = thing.new('')
+
+
+      thing_inst = container.generate("Canyon river snakes Barely kissing the soft shoulders of the hovering hills")
+      thing_inst.generate("Substuff")
+      thing_inst.generate("Substuff2")
+
+       jQuery.noConflict();
+       var myLines = new Array();
+       myLines[1] = "Canyon river snakes Barely kissing the soft shoulders of the hovering hills"
+       myLines[2] = "You pour yourself out Spilling forth your entirety All on our behalf "
+       myLines[3] = "Her face stroked the years with broken sadnessand slightly chilled the guilty hands limb bare, shrunken, shuddered time good-bye "
+       myLines[4] = "Now placid vistas belie the brutal carving of there creation"
+       myLines[5] = "Lines once scrawled in haste leave there closeted intentions to reach prominence"
+       myLines[6] = "This is a test of the emergency broadcasting system  if it were not a test you would be dead by now"
+       function roll1d6(){
+      	 var die1 = Math.floor((Math.random()*6)+1);
+      	 jQuery("#resultBox").empty().append(myLines[die1]);
+      	//alert(die1);
+       }
+    css:
+      .titleSpan{
+      	 background-color: #ccc;
+      	 padding: 2px;
+       }
+      .whiteRow{
+      	 background-color: #333;
+       }
+  body
+    br
+    .container
+      .span12.titleSpan
+        h1
+          | Magic Number Generator Box
+        .container-fluid.whiteRow
+          .row-fluid
+            .span2
+              h3
+                | Menu
+              #buttons
+                button#die1.btn onclick="roll1d6()" type="button" Click me
+              br
+            .span9
+              h3
+                | Results
+              #resultBox
+                | Result
+              #consoleBox
+              br
